@@ -1,29 +1,30 @@
-# angular-model-init
+# angular-file-model
 init ng-model
 
 ## Example
 
 ```html
-<input ng-model="myModel" ng-model-init="'123456'" />
-<input ng-model="myModel" ng-model-init="[1, 2, 3]" />
-<input ng-model="myModel" ng-model-init="myVar" />
+<input type="file" ng-model="myFile" ng-file-model />
+
+<div >filename: <span ng-bind="myFile.name"></span></div>
+<div >filesize: <span ng-bind="myFile.size"></span></div>
+<div >filetype: <span ng-bind="myFile.type"></span></div>
 ```
 
 
 ## Directive
 
 ```js
-app.directive('ngModelInit', ['$parse', function ($parse) {
+app.directive('ngFileModel', [function () {
     return {
-        require: '?ngModel',
+        require: 'ngModel',
         restrict: 'A',
         link: function ($scope, $element, $attrs, ngModel) {
-            if (!ngModel) {
-                return;
-            }
-            ngModel.$setViewValue($parse($attrs.ngModelInit)($scope));
-            ngModel.$render();
+            $element.bind('change', function () {
+                ngModel.$setViewValue($element[0].files[0]);
+                ngModel.$render();
+            });
         }
     };
 }]);
-```# angular-file-model
+```

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ngModelInit</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
+    <script src="https://code.jquery.com/jquery-2.2.3.min.js"></script>
+    <script src="../angular-file-model.su.js"></script>
+</head>
+<body ng-app="app" ng-controller="appCtrl">
+
+    <input type="file" ng-model="myFile" ng-file-model />
+    <div >filename: <span ng-bind="myFile.name"></span></div>
+    <div >filesize: <span ng-bind="myFile.size"></span></div>
+    <div >filetype: <span ng-bind="myFile.type"></span></div>
+
+    <script>
+        (function () {
+            "use strict";
+
+            var app = angular.module('app', ['ngFileModel']);
+
+            app.controller('appCtrl', ['$scope', function ($scope) {
+                console.info('app init');
+            }]);
+        }());
+    </script>
+</body>
+</html>
