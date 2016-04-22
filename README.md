@@ -1,5 +1,6 @@
 # angular-file-model
-init ng-model
+
+updata ngModel when user select file.
 
 ## Example
 
