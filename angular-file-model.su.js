@@ -19,10 +19,36 @@
             require: 'ngModel',
             restrict: 'A',
             link: function ($scope, $element, $attrs, ngModel) {
-                $element.bind('change', function () {
-                    ngModel.$setViewValue($element[0].files[0]);
-                    ngModel.$render();
-                });
+                if ($attrs.ngFileModel == 'base64') {
+                    $element.bind('change', function () {
+                        var reader = new FileReader();
+                        var file = $element[0].files[0];
+
+                        reader.addEventListener("load", function () {
+
+                            ngModel.$setViewValue({
+                                lastModified: file.lastModified,
+                                lastModifiedDate: file.lastModifiedDate,
+                                name: file.name,
+                                size: file.size,
+                                type: file.type,
+                                webkitRelativePath: file.webkitRelativePath,
+                                base64: reader.result,
+                            });
+                            ngModel.$render();
+
+                        }, false);
+
+                        if (file) {
+                            reader.readAsDataURL(file);
+                        }
+                    });
+                } else {
+                    $element.bind('change', function () {
+                        ngModel.$setViewValue($element[0].files[0]);
+                        ngModel.$render();
+                    });
+                }
             }
         };
     }]);

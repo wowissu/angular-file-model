@@ -12,20 +12,9 @@ updata ngModel when user select file.
 <div >filetype: <span ng-bind="myFile.type"></span></div>
 ```
 
+## base64
+```html
+<input type="file" ng-model="myFile" ng-file-model="base64" />
 
-## Directive
-
-```js
-app.directive('ngFileModel', [function () {
-    return {
-        require: 'ngModel',
-        restrict: 'A',
-        link: function ($scope, $element, $attrs, ngModel) {
-            $element.bind('change', function () {
-                ngModel.$setViewValue($element[0].files[0]);
-                ngModel.$render();
-            });
-        }
-    };
-}]);
+<img src="{{ file.base64 }}" />
 ```
