@@ -9,6 +9,8 @@
     require, module, directive, restrict, link, $setViewValue, $render, ngModelInit, $element, bind, files
 */
 
+// test branch
+
 (function (angular) {
     "use strict";
 
