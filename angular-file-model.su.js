@@ -8,10 +8,6 @@
 /*property
     require, module, directive, restrict, link, $setViewValue, $render, ngModelInit, $element, bind, files
 */
-*
-// est
-
-// test branch
 
 (function (angular) {
     "use strict";
