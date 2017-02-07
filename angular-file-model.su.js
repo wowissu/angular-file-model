@@ -10,6 +10,7 @@
 */
 
 /* here i'm master */
+/* test */
 
 (function (angular) {
     "use strict";
